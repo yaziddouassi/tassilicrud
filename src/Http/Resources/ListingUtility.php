@@ -70,8 +70,8 @@ class ListingUtility
     public function addModalForm(array $settings): self
     {
         $this->tassiliFormList[$settings['url']]['info'] = $settings;
-        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '1000px';
-        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 2 , 'xl' => 2];
+        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '580px';
+        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 1 , 'xl' => 1];
         $this->tassiliFormList[$settings['url']]['info']['wizardActive'] = 'no';
         $this->tassiliFormList[$settings['url']]['info']['wizard'] = [];
         $this->tassiliFormList[$settings['url']]['info']['wizardCurrent'] = 1;
