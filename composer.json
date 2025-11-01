@@ -1,0 +1,29 @@
+{
+    "name": "tassili/crud",
+    "description": "Laravel Inertia Vue Crud Generator created by Rabah Douassi",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tassili\\Crud\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel" : {
+            "providers": [
+               "Tassili\\Crud\\TassiliServiceProvider"
+            ] 
+        }
+    },
+    "authors": [
+        {
+            "name": "yaziddouassi",
+            "email": "rabahdouassi@yahoo.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.2"
+    }
+}

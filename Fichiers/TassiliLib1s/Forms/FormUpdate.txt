@@ -1,0 +1,366 @@
+<template>
+    <div class="pr-[10px] pl-[10px]">
+
+        <form @submit.prevent="submit('creer')" @keydown.enter.prevent>
+        <div class="conteneurForm">
+         <template
+        v-for="([key, field], index) in Object.entries(tassiliInput.form[formKey]).filter(([_, f]) => f.type !== 'Hidden')"
+        :key="key">
+       
+       <InputText v-if="field.type === 'Text'" 
+       :FormKey="formKey"  :cle="key" />
+
+       <Textarea v-if="field.type === 'Textarea'" 
+       :FormKey="formKey" :cle="key" />
+
+        <InputNumber v-if="field.type === 'Number'" 
+       :FormKey="formKey" :cle="key" />
+
+       <Password v-if="field.type === 'Password'" 
+       :FormKey="formKey" :cle="key" />
+
+       <InputSelect v-if="field.type === 'Select'" 
+       :FormKey="formKey" :cle="key" />
+
+       <InputDate v-if="field.type === 'Date'" 
+       :FormKey="formKey" :cle="key" />
+
+       <InputRadio v-if="field.type === 'Radio'" 
+       :FormKey="formKey" :cle="key" />
+
+       <Checkbox v-if="field.type === 'Checkbox'" 
+       :FormKey="formKey" :cle="key" />
+
+       <CheckboxList v-if="field.type === 'CheckboxList'" 
+       :FormKey="formKey" :cle="key" />
+
+       <RichEditor v-if="field.type === 'Quill'" 
+       :FormKey="formKey" :cle="key" />
+
+       <InputFileEdit v-if="field.type === 'File'" 
+       :FormKey="formKey" :cle="key" />
+      
+       <Repeteur v-if="field.type === 'Repeater'" 
+       :FormKey="formKey" :cle="key" />
+
+       <Signature v-if="field.type === 'Signature'" 
+       :FormKey="formKey" :cle="key" />
+
+       <MultipleFileEdit v-if="field.type === 'MultipleFile'" 
+       :FormKey="formKey" :cle="key" />
+
+       </template>
+      </div>
+
+       <LoadAction :formKey="formKey" />
+
+       <div class="mt-[10px] flex flew-wrap gap-[5px]">
+          
+                <div>
+                <button class="bg-[blue] w-[150px] text-white p-[9px] rounded-[2px]" type="submit">
+                   {{tassiliInput.tassiliFormList[props.formKey]['info']['updateLabel'] }}
+                 </button>
+                </div>
+                <div v-if="tassiliInput.tassiliFormList[props.formKey]['info']['updateAndStay'] == 'yes'">
+                 <button type="button" @click="submit('other')" class="border-[1px] border-black text-black p-[9px] rounded-[2px]">
+                    {{tassiliInput.tassiliFormList[props.formKey]['info']['updateAndStayLabel']  }}
+                 </button>
+                </div>
+            
+          
+          </div>
+
+
+      
+      </form>
+ 
+
+    </div>
+</template>
+
+<script setup>
+import { TassiliInput } from '../stores/tassiliInput';
+import { TassiliRoutes } from '@/Vendor/TassiliLibs/stores/tassiliRoutes';
+import InputText from '../Inputs/InputText.vue';
+import Textarea from '../Inputs/Textarea.vue';
+import InputNumber from '../Inputs/InputNumber.vue';
+import Password from '../Inputs/Password.vue';
+import InputSelect from '../Inputs/InputSelect.vue';
+import InputDate from '../Inputs/InputDate.vue';
+import InputRadio from '../Inputs/InputRadio.vue';
+import Checkbox from '../Inputs/Checkbox.vue';
+import CheckboxList from '../Inputs/CheckboxList.vue';
+import RichEditor from '../Inputs/RichEditor.vue';
+import InputFileEdit from '../Inputs/InputFileEdit.vue';
+import MultipleFileEdit from '../Inputs/MultipleFileEdit.vue';
+import Signature from '../Inputs/Signature.vue';
+import Repeteur from '../Inputs/Repeteur.vue';
+import { router, usePage } from '@inertiajs/vue3';
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css';
+import { computed } from "vue";
+import LoadAction from './LoadAction.vue';
+
+const props = defineProps({
+  formKey : {
+    type: String,
+    required: true
+  },
+  record : {
+    type: String,
+    required: true
+  },
+})
+
+const tassiliInput = TassiliInput()
+const page = usePage()
+
+tassiliInput.form[props.formKey] = JSON.parse(JSON.stringify(tassiliInput.tassiliFormList[props.formKey]['fields']))
+
+const smCols = computed(() =>
+ tassiliInput.tassiliFormList?.[props.formKey]?.info?.grid?.sm || 1
+);
+const mdCols = computed(() =>
+ tassiliInput.tassiliFormList?.[props.formKey]?.info?.grid?.md || 1
+);
+const lgCols = computed(() =>
+ tassiliInput.tassiliFormList?.[props.formKey]?.info?.grid?.lg || 1
+);
+const xlCols = computed(() =>
+ tassiliInput.tassiliFormList?.[props.formKey]?.info?.grid?.xl || 1
+);
+
+function initField() {
+  
+  Object.entries(page.props[props.record]).forEach(([key, value]) => {
+  
+
+  if(key in tassiliInput.form[props.formKey]) {
+
+
+const tab1 = ['Text','Date','Number','Hidden','Select','Checkbox','Radio','Quill','Textarea','Signature'];
+
+if(tab1.includes(tassiliInput.form[props.formKey][key]['type'])) {
+
+tassiliInput.form[props.formKey][key]['value'] = value
+}
+
+
+else if(tassiliInput.form[props.formKey][key]['type']  == 'File') {
+tassiliInput.form[props.formKey][key]['options']['urlRecord'] = value
+}
+
+else if(tassiliInput.form[props.formKey][key]['type']  === 'CheckboxList'  || 
+   tassiliInput.form[props.formKey][key]['type']  === 'Repeater') {
+
+  const data = new Proxy(
+  JSON.parse(value),
+  {}
+);
+tassiliInput.form[props.formKey][key]['value'] = data
+}
+
+
+else if(tassiliInput.form[props.formKey][key]['type']  === 'MultipleFile') {
+
+
+ const data = new Proxy(
+ JSON.parse(value) ,
+  {}
+);
+
+ tassiliInput.form[props.formKey][key]['options']['existingFiles'] = data
+
+}
+
+  }
+});
+
+} 
+
+initField()
+
+
+function cleanQuillContent(html) {
+  if (typeof html !== 'string') return html;
+  return html.replace(/<p>\s*<\/p>/g, '').replace(/<p><br><\/p>/g, '').trim();
+}
+
+
+function checkNullable() {
+  let temoin = 0;
+
+  Object.keys(tassiliInput.form[props.formKey]).forEach((champ) => {
+
+   if (tassiliInput.form[props.formKey][champ]['type'] === 'MultipleFile') {
+        if (tassiliInput.form[props.formKey][champ]['options']['existingFiles'].length  === 0 && 
+          tassiliInput.form[props.formKey][champ]['options']['tempUrlTabs'].length === 0 &&
+      tassiliInput.form[props.formKey][champ]['options']['nullable'] === 'yes') {
+         temoin++;
+           }
+    }
+ 
+  });
+
+  return temoin;
+}
+
+
+
+function insert(action) {
+
+const temoin = checkNullable();
+
+if (temoin > 0) {
+  const notyf = new Notyf({ position: { x: 'right', y: 'top' } });
+  notyf.error(`${temoin} fields(s) multiple required are missing(s).`);
+  return;
+}
+
+  const formData = new FormData();
+
+  tassiliInput.tassiliFormList[props.formKey]['info']['isAnimated'] = 'on'
+
+  formData.append(
+    'urlValidationurlValidationurlValidationTassili17485RRY4R4RD9448RK48K4RFRFIRU',
+    props.formKey
+  );
+  formData.append('id',page.props[props.record]['id'] );
+
+  Object.keys(tassiliInput.form[props.formKey]).forEach((key) => {
+
+
+    const tab1 = ['MultipleFile']
+    if (tab1.includes(tassiliInput.form[props.formKey][key]['type'])) {
+    if(!tassiliInput.form[props.formKey][key]['value'] || tassiliInput.form[props.formKey][key]['value'].length === 0) {
+      formData.append(key, '');
+    }
+    else if (Array.isArray(tassiliInput.form[props.formKey][key]['value'])) {
+      tassiliInput.form[props.formKey][key]['value'].forEach((file, index) => {
+        formData.append(`${key}[]`, file);
+      });
+    }
+ 
+
+     const  temp = tassiliInput.form[props.formKey][key]['options']['existingFiles'] || '[]';
+     const index = key + '_newtab'
+      formData.append(index, JSON.stringify(temp));
+
+    
+    } 
+
+
+    const tab2 = ['File'];
+    if(tab2.includes(tassiliInput.form[props.formKey][key]['type'])) {
+      formData.append(key , tassiliInput.form[props.formKey][key]['value']);
+    }
+
+
+    const tab3 = [
+      'Text','Date','Hidden','Select','Number','Radio','Checkbox','CheckboxList','Password','Textarea'
+    ,'Signature'];
+    if (tab3.includes(tassiliInput.form[props.formKey][key]['type'])) {
+      formData.append(key, tassiliInput.form[props.formKey][key]['value']);
+    }
+
+
+    const tab4 = ['Quill'];
+    if(tab4.includes(tassiliInput.form[props.formKey][key]['type'])) {
+      formData.append(key, cleanQuillContent(tassiliInput.form[props.formKey][key]['value'] || ''));
+    }
+
+
+
+if (tassiliInput.form[props.formKey][key]['type'] === 'Repeater' ) {
+
+   tassiliInput.form[props.formKey][key]['value'].forEach((item, i) => {
+    Object.entries(item).forEach(([subKey, subValue]) => {
+
+       if(tassiliInput.form[props.formKey][key]['fields'][subKey]['type'] === 'Quill') {
+          subValue  = cleanQuillContent(subValue || '')
+      }
+
+      formData.append(`${key}[${i}][${subKey}]`, subValue);
+
+    });
+  });
+
+
+}
+
+  });
+
+  router.post(props.formKey, formData, {
+    forceFormData: true,
+    onError: (errors) => {
+      tassiliInput.setError(props.formKey,errors);
+      tassiliInput.tassiliFormList[props.formKey]['info']['isAnimated'] = 'off'
+    },
+    onSuccess: () => {
+      if (action === 'creer') {
+          tassiliInput.cancelError(props.formKey);
+          tassiliInput.form[props.formKey] = JSON.parse(JSON.stringify(tassiliInput.tassiliFormList[props.formKey]['fields']))
+          initField()
+          const notyf = new Notyf({ position: { x: 'right', y: 'top' } });
+          notyf.success(tassiliInput.tassiliFormList[props.formKey]['info']['updateMessage']);
+          tassiliInput.tassiliFormList[props.formKey]['info']['isAnimated'] = 'off'
+
+          if(tassiliInput.tassiliFormList[props.formKey]['info']['routeSession'] != '') {
+             const tassiliroutes = TassiliRoutes();
+             tassiliroutes.visit(tassiliInput.tassiliFormList[props.formKey]['info']['routeSessionData']['model'],
+             tassiliInput.tassiliFormList[props.formKey]['info']['routeSessionData']['url']);
+             return;
+          }
+
+          if(tassiliInput.tassiliFormList[props.formKey]['info']['route'] != '') {
+             router.visit(tassiliInput.tassiliFormList[props.formKey]['info']['route'])
+             return;
+          }
+
+      } else if (action === 'other') {
+          tassiliInput.cancelError(props.formKey);
+          tassiliInput.form[props.formKey] = JSON.parse(JSON.stringify(tassiliInput.tassiliFormList[props.formKey]['fields']))
+          initField()
+          const notyf = new Notyf({ position: { x: 'right', y: 'top' } });
+          notyf.success(tassiliInput.tassiliFormList[props.formKey]['info']['updateMessage']);
+          tassiliInput.tassiliFormList[props.formKey]['info']['isAnimated'] = 'off'
+      }
+    },
+  });
+}
+
+
+function submit(action) {
+   insert(action);
+  }
+
+</script>
+
+<style lang="css" scoped>
+.conteneurForm {
+    display: grid;
+    grid-template-columns: repeat(v-bind(smCols), 1fr);
+    gap: 10px;
+  }
+@media (min-width: 640px) { 
+  .conteneurForm {
+    display: grid;
+    grid-template-columns: repeat(v-bind(mdCols), 1fr);
+  }
+}
+
+@media (min-width: 768px) { 
+  .conteneurForm {
+    display: grid;
+    grid-template-columns: repeat(v-bind(lgCols), 1fr);
+  }
+}
+
+@media (min-width: 1024px) { 
+  .conteneurForm {
+   display: grid;
+   grid-template-columns: repeat(v-bind(xlCols), 1fr);
+  
+  }
+}
+</style>

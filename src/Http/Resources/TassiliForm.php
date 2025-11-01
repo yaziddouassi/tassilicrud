@@ -1,0 +1,313 @@
+<?php
+
+namespace Tassili\Crud\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+
+class TassiliForm
+{
+    public array $tassiliSettings = [];
+    public array $tassiliFormList = [];
+    public $record = null;
+
+    public $bulks = [] ;
+    public $bulkTabs = [] ;
+    public $bulkOpens = [] ;
+    public $modalFormList = [] ;
+
+    public string $customActionUrlTemoin = '';
+
+    private array $arrayTypes1 = ['Text', 'Date', 'Number', 'Hidden', 'Select', 'Radio', 'Textarea', 'Signature'];
+    private array $arrayTypes2 = ['Quill'];
+    private array $arrayTypes4 = ['File'];
+    private array $arrayTypes5 = ['MultipleFile'];
+    private array $arrayTypes6 = ['CheckboxList'];
+    private array $arrayTypes7 = ['Checkbox'];
+    private array $arrayTypes8 = ['Password'];
+    private array $arrayTypes9 = ['Repeater'];
+
+    public function __construct(array $settings = [])
+    {
+        config(['inertia.ssr.enabled' => false]);
+        $this->tassiliSettings = array_merge($this->tassiliSettings, $settings);
+
+    }
+
+    
+     public function AddForm(array $settings): self
+    {
+        $this->tassiliFormList[$settings['url']]['info'] = $settings;
+        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '1000px';
+        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 2 , 'xl' => 2];
+        $this->tassiliFormList[$settings['url']]['info']['wizardActive'] = 'no';
+        $this->tassiliFormList[$settings['url']]['info']['wizard'] = [];
+        $this->tassiliFormList[$settings['url']]['info']['wizardCurrent'] = 1;
+
+        $this->tassiliFormList[$settings['url']]['info']['createOther'] = 'yes';
+        $this->tassiliFormList[$settings['url']]['info']['updateAndStay'] = 'no';
+        $this->tassiliFormList[$settings['url']]['info']['createLabel'] = 'Create';
+        $this->tassiliFormList[$settings['url']]['info']['createOtherLabel'] = 'Create Other';
+        $this->tassiliFormList[$settings['url']]['info']['updateLabel'] = 'Update';
+        $this->tassiliFormList[$settings['url']]['info']['updateAndStayLabel'] = 'Update And Stay';
+        $this->tassiliFormList[$settings['url']]['info']['routeSession'] = '';
+        $this->tassiliFormList[$settings['url']]['info']['routeSessionData'] = [];
+        $this->tassiliFormList[$settings['url']]['info']['route'] = '';
+        $this->tassiliFormList[$settings['url']]['info']['isAnimated'] = 'off';
+        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created23'; 
+        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated23';
+
+        $this->customActionUrlTemoin = $settings['url'];
+        
+        return $this;
+    }
+
+    public function addModalForm(array $settings): self
+    {
+        $this->modalFormList[$settings['collection']][$settings['url']] = $settings['url'] ;
+        $this->tassiliFormList[$settings['url']]['info'] = $settings;
+        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '1000px';
+        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 2 , 'xl' => 2];
+        $this->tassiliFormList[$settings['url']]['info']['wizardActive'] = 'no';
+        $this->tassiliFormList[$settings['url']]['info']['wizard'] = [];
+        $this->tassiliFormList[$settings['url']]['info']['wizardCurrent'] = 1;
+
+        $this->tassiliFormList[$settings['url']]['info']['createOther'] = 'yes';
+        $this->tassiliFormList[$settings['url']]['info']['updateAndStay'] = 'no';
+        $this->tassiliFormList[$settings['url']]['info']['createLabel'] = 'Create';
+        $this->tassiliFormList[$settings['url']]['info']['createOtherLabel'] = 'Create Other';
+        $this->tassiliFormList[$settings['url']]['info']['updateLabel'] = 'Update';
+        $this->tassiliFormList[$settings['url']]['info']['updateAndStayLabel'] = 'Update And Stay';
+        $this->tassiliFormList[$settings['url']]['info']['routeSession'] = '';
+        $this->tassiliFormList[$settings['url']]['info']['routeSessionData'] = [];
+        $this->tassiliFormList[$settings['url']]['info']['route'] = '';
+        $this->tassiliFormList[$settings['url']]['info']['isAnimated'] = 'off';
+        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created23'; 
+        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated23';
+
+        $this->customActionUrlTemoin = $settings['url'];
+        
+        return $this;
+    }
+
+   
+   
+    public function hideCreateOther() {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['createOther'] = 'no';
+         return $this;
+    }
+
+    public function showUpdateAndStay() {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['updateAndStay'] = 'yes';
+         return $this;
+    }
+
+     public function LabelButtonCreate($createLabel) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['createLabel'] = $createLabel;
+         return $this;
+    }
+
+    public function LabelButtonCreateOther($createOtherLabel) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['createOtherLabel'] = $createOtherLabel;
+         return $this;
+    }
+
+    public function LabelButtonUpdate($updateLabel) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['updateLabel'] = $updateLabel;
+        return $this;
+    }
+
+    public function LabelButtonUpdateAndStay($updateLabelAndStay) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['updateAndStayLabel'] = $updateLabelAndStay;
+         return $this; 
+    }
+
+    public function redirectToList($model) {
+        $transformString = new \Tassili\Crud\Utils\TransformString();
+        $url =  $transformString->transformUrl($model);
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['routeSession'] = 'active';
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['routeSessionData']['model'] = $model;
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['routeSessionData']['url'] = $url;
+         return $this;
+    }
+                    
+    public function redirectToUrl($route) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['route'] = $route;
+        return $this;
+    } 
+
+    public function LabelCreateMessage($createMessage) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['createMessage'] = $createMessage;
+         return $this;
+    }
+
+    public function LabelUpdateMessage($updateMessage) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['updateMessage'] = $updateMessage;
+         return $this;
+    }
+
+
+    public function form(array $fields): self
+    {
+        foreach ($fields as $field) {
+            $field->registerToCustomAction($this);
+        }
+        
+        return $this;
+    }
+
+     public function addBulk(array $options): void
+    {
+        $this->bulks[$options['collection']][$options['url']] = $options;
+        $this->bulkTabs[$options['collection']] = [];
+        $this->bulkOpens[$options['collection']] = 'no';
+    }
+
+    public function wizard(array $wizard): self
+    {
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['wizard'] = $wizard;
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['wizardActive'] = 'yes';
+        
+        return $this;
+    }
+
+     public function updateRecord(Request $request): void
+    {
+        $url = $request->urlValidationurlValidationurlValidationTassili17485RRY4R4RD9448RK48K4RFRFIRU;
+
+        foreach ($request->all() as $key => $value) {
+            if (!array_key_exists($key, $this->tassiliFormList[$url]['fields'])) {
+                continue;
+            }
+
+            $field = $this->tassiliFormList[$url]['fields'][$key];
+            
+            if (!$field || $field['options']['noDatabase'] === 'yes') {
+                continue;
+            }
+
+            $this->processFieldValue($key, $value, $field, $request);
+        }
+    }
+
+    public function createRecord(Request $request): void {
+       $this->updateRecord($request);
+    }
+
+    private function processFieldValue(string $key, $value, array $field, Request $request): void
+    {
+        $type = $field['type'];
+
+        if (in_array($type, array_merge($this->arrayTypes1, $this->arrayTypes2))) {
+            $this->record[$key] = $value;
+        }
+        elseif (in_array($type, $this->arrayTypes6)) {
+            $this->record[$key] = is_array($value) 
+                ? json_encode($value) 
+                : json_encode(explode(',', $value));
+        }
+        elseif (in_array($type, $this->arrayTypes7)) {
+            $this->record[$key] = $value === 'true';
+        }
+        elseif (in_array($type, $this->arrayTypes8)) {
+            if ($value) {
+                $this->record[$key] = Hash::make($value);
+            }
+        }
+        elseif (in_array($type, $this->arrayTypes9)) {
+            $this->processRepeaterField($key, $value, $field);
+        }
+        elseif (in_array($type, $this->arrayTypes4)) {
+            $this->processFileField($key, $field, $request);
+        }
+        elseif (in_array($type, $this->arrayTypes5)) {
+            $this->processMultipleFileField($key, $value, $field, $request);
+        }
+    }
+
+    private function processRepeaterField(string $key, $value, array $field): void
+    {
+        $cleanedRepeater = [];
+        $allowedTypes = ['Text', 'Date', 'Number', 'Hidden', 'Select', 'Radio', 'Textarea', 'Quill', 'Checkbox'];
+
+        foreach ($value as $repeaterItem) {
+            $cleanedItem = [];
+
+            foreach ($repeaterItem as $subKey => $subValue) {
+                $subType = $field['fields'][$subKey]['type'] ?? null;
+
+                if ($subType === 'CheckboxList') {
+                    $cleanedItem[$subKey] = is_array($subValue) 
+                        ? $subValue 
+                        : explode(',', $subValue);
+                }
+                elseif (in_array($subType, $allowedTypes)) {
+                    $cleanedItem[$subKey] = $subValue ?? '';
+                }
+            }
+
+            $cleanedRepeater[] = $cleanedItem;
+        }
+
+        $this->record[$key] = json_encode($cleanedRepeater);
+    }
+
+    private function processFileField(string $key, array $field, Request $request): void
+    {
+        if (!$request->hasFile($key)) {
+            return;
+        }
+
+        $dossier = $field['options']['storage_folder'];
+        $dossierStorage = 'uploads/' . $dossier;
+        $file = $request->file($key);
+        $uniqueName = Str::uuid() . '.' . $file->getClientOriginalName();
+        $file->storeAs($dossierStorage, $uniqueName, config('tassili.storage_disk'));
+        $this->record[$key] = $dossierStorage . '/' . $uniqueName;
+    }
+
+    private function processMultipleFileField(string $key, $value, array $field, Request $request): void
+    {
+        $tab1 = json_decode($request->input($key . '_newtab'), true) ?? [];
+        $dossier = $field['options']['storage_folder'];
+        $dossierStorage = 'uploads/' . $dossier;
+
+        if ($value) {
+            foreach ($value as $file) {
+                $uniqueName = Str::uuid() . '.' . $file->getClientOriginalName();
+                $path = $file->storeAs($dossierStorage, $uniqueName, config('tassili.storage_disk'));
+                $tab1[] = $path;
+            }
+        }
+
+        $this->record[$key] = json_encode($tab1);
+    }
+
+    
+    public function getInertiaData(): array
+    {
+        return [
+            'user' => \Illuminate\Support\Facades\Auth::user(),
+            'routes' => \Tassili\Crud\Models\TassiliCrud::where('active', true)->get(),
+            'tassiliUrlStorage' => config('tassili.storage_url'),
+            'tassiliFormList' => $this->tassiliFormList,
+            'bulks' => $this->bulks ,
+            'bulkTabs' => $this->bulkTabs ,
+            'bulkOpens' => $this->bulkOpens ,
+            'modalFormList' => $this->modalFormList ,
+        ];
+    }
+
+
+}
