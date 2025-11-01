@@ -56,8 +56,8 @@ class TassiliForm
         $this->tassiliFormList[$settings['url']]['info']['routeSessionData'] = [];
         $this->tassiliFormList[$settings['url']]['info']['route'] = '';
         $this->tassiliFormList[$settings['url']]['info']['isAnimated'] = 'off';
-        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created23'; 
-        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated23';
+        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created'; 
+        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated';
 
         $this->customActionUrlTemoin = $settings['url'];
         
@@ -68,8 +68,8 @@ class TassiliForm
     {
         $this->modalFormList[$settings['collection']][$settings['url']] = $settings['url'] ;
         $this->tassiliFormList[$settings['url']]['info'] = $settings;
-        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '1000px';
-        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 2 , 'xl' => 2];
+        $this->tassiliFormList[$settings['url']]['info']['modalWidth'] = '580px';
+        $this->tassiliFormList[$settings['url']]['info']['grid'] = ['sm' =>  1 , 'md' => 1 , 'lg' => 1 , 'xl' => 1];
         $this->tassiliFormList[$settings['url']]['info']['wizardActive'] = 'no';
         $this->tassiliFormList[$settings['url']]['info']['wizard'] = [];
         $this->tassiliFormList[$settings['url']]['info']['wizardCurrent'] = 1;
@@ -84,8 +84,8 @@ class TassiliForm
         $this->tassiliFormList[$settings['url']]['info']['routeSessionData'] = [];
         $this->tassiliFormList[$settings['url']]['info']['route'] = '';
         $this->tassiliFormList[$settings['url']]['info']['isAnimated'] = 'off';
-        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created23'; 
-        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated23';
+        $this->tassiliFormList[$settings['url']]['info']['createMessage'] = 'Record created'; 
+        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated';
 
         $this->customActionUrlTemoin = $settings['url'];
         

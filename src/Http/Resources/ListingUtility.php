@@ -77,7 +77,7 @@ class ListingUtility
         $this->tassiliFormList[$settings['url']]['info']['wizardCurrent'] = 1;
 
         $this->tassiliFormList[$settings['url']]['info']['updateLabel'] = 'Update';
-        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated23';
+        $this->tassiliFormList[$settings['url']]['info']['updateMessage'] = 'Record updated';
         
         $this->customActionUrlTemoin = $settings['url'];
         

@@ -2,10 +2,10 @@
     
     <div class="max-[799px]:hidden pt-[2px] pl-[2px] pr-[2px] ">
 
-<div class="h-[60px] bg-[#ddd] text-black grid grid-cols-3">
+<div class="h-[60px] bg-[#ddd] text-[#000066] grid grid-cols-3">
      
-   <div class="text-[black] flex pl-[5px] pt-[12px] text-[20px]">
-      <span class="material-icons text-[30px] pt-[2px]" style="display:block">
+   <div class="text-[#000066] flex pl-[5px] pt-[12px] text-[20px]">
+      <span class="material-icons text-[30px] pt-[3px]" style="display:block">
          account_circle
          </span>
          <span style="display:block" class="capitalize">
@@ -14,13 +14,13 @@
      
      </div>
 
-    <div class="text-center text-[black] text-[20px] font-bold pt-[14px]">
+    <div class="text-center text-[#000066] text-[20px] font-bold pt-[14px]">
            {{ page.props.tassiliSettings.company}}
      </div> 
 
    <div class="text-right pt-[8px] pr-[4px]">
     
-      <button class="border-[1px] border-black text-[black]  min-w-[80px] rounded-[3px] p-[7px] text-[20px] capitalize">
+      <button class="border-[1px] border-[#000066] text-[#000066] min-w-[80px] rounded-[3px] p-[7px] text-[20px] capitalize">
          admin
       </button>
 
@@ -37,6 +37,6 @@ const page = usePage()
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 
 </style>
