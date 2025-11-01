@@ -83,7 +83,7 @@ class TassiliCreator extends Command
         }
 
         // ----- SECTION 3 -----
-        $sourcePath5 = base_path('vendor/tassili/crud/Fichiers/TassiliDev');
+        $sourcePath5 = base_path('vendor/tassili/crud/Fichiers/TassiliDev1');
         $directory5 = base_path('resources/js/Pages/TassiliDev');
 
         File::copyDirectory($sourcePath5, $directory5);
