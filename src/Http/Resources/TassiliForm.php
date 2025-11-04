@@ -92,7 +92,11 @@ class TassiliForm
         return $this;
     }
 
-   
+    public function grid(array $grid) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['grid'] = $grid;
+         return $this;
+    }
    
     public function hideCreateOther() {
 

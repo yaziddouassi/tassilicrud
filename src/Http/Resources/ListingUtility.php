@@ -84,6 +84,12 @@ class ListingUtility
         return $this;
     }
 
+    public function grid(array $grid) {
+
+        $this->tassiliFormList[$this->customActionUrlTemoin]['info']['grid'] = $grid;
+         return $this;
+    }
+
     public function LabelButtonUpdate($updateLabel) {
 
         $this->tassiliFormList[$this->customActionUrlTemoin]['info']['updateLabel'] = $updateLabel;
