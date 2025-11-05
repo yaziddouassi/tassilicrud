@@ -6,7 +6,9 @@
         <NavBarre/> 
         <TopPage/>
       
-        <WizardUpdate :form-key="page.props.pageSettings.validationUrl" :record="'record'" />
+        <div v-if="page.props.record">
+          <WizardUpdate :form-key="page.props.pageSettings.validationUrl" :record="'record'" />
+        </div>
 
         <ModalForm />
 
