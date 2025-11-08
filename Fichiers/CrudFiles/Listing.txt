@@ -1,6 +1,6 @@
 <template>
   <div class="min-[800px]:flex w-full text-black">
-    <SideBarre/>
+    <Sidebarre/>
 
      <div class="min-h-[100vh] w-full  overflow-x-auto bg-[#DFDFDF]">
       <NavBarre/>
@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import SideBarre from '../../SideBarre.vue';
-import NavBarre from '../../NavBarre.vue';
+import Sidebarre from '@/Vendor/TassiliLibs/Sidebarre.vue';
+import NavBarre from '@/Vendor/TassiliLibs/NavBarre.vue';
 import {listingService} from '@/Vendor/TassiliLibs/Service/listingService'
 import ListeTop from '@/Vendor/TassiliLibs/Listing/ListeTop.vue';
 import FilterListTop from '@/Vendor/TassiliLibs/Listing/FilterListTop.vue';
