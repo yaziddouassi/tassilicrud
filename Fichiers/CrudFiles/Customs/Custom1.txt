@@ -4,7 +4,6 @@
 
      <div class="min-h-[100vh] w-full  overflow-x-auto bg-[#DFDFDF]">
         <NavBarre/> 
-        <TopPage/>
 
         <ModalForm />
 
@@ -17,7 +16,6 @@
 import Sidebarre from '@/Vendor/TassiliLibs/Sidebarre.vue';
 import NavBarre from '@/Vendor/TassiliLibs/NavBarre.vue';
 import { formService } from '@/Vendor/TassiliLibs/Service/formService';
-import TopPage from '@/Vendor/TassiliLibs/Updator/TopPage.vue';
 import ModalForm from '@/Vendor/TassiliLibs/Forms/ModalForm.vue';
 import { usePage } from '@inertiajs/vue3';
 
