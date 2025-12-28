@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="tassiliBulk.bulkTabs[props.collection] != 0">
         <div class="h-[32px]">
            <div class="w-[32px] h-[32px] cursor-pointer"
            @click="open()">
