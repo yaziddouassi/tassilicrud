@@ -51,7 +51,7 @@ class CreatorController extends Controller
 
      public function initTassili()
     {
-        \$this->tassili->AddForm([
+        \$this->tassili->addForm([
             'url' => \$this->pageSettings['validationUrl'],
         ])->form([
             TextInput::make('name'),
@@ -138,7 +138,7 @@ class UpdatorController extends Controller
      
     public function initTassili()
     {
-        \$this->tassili->AddForm([
+        \$this->tassili->addForm([
             'url' => \$this->pageSettings['validationUrl'],
         ])->form([
             TextInput::make('name'),
