@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing'
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing'
 import FilterText from './FilterText.vue';
 import FilterDate from './FilterDate.vue';
 import FilterNumber from './FilterNumber.vue';

@@ -40,11 +40,11 @@
  </template>
  
  <script setup>
-import BtnDelete from '@/Vendor/TassiliLibs/Listing/BtnDelete.vue';
-import BtnUpdate from '@/Vendor/TassiliLibs/Listing/BtnUpdate.vue';
-import BulkCheckbox from '@/Vendor/TassiliLibs/Listing/BulkCheckbox.vue';
-import CustumAction from '@/Vendor/TassiliLibs/Listing/CustumAction.vue';
-import Paginator from '@/Vendor/TassiliLibs/Paginator.vue';
+import BtnDelete from '@/vendor/TassiliLibs/Listing/BtnDelete.vue';
+import BtnUpdate from '@/vendor/TassiliLibs/Listing/BtnUpdate.vue';
+import BulkCheckbox from '@/vendor/TassiliLibs/Listing/BulkCheckbox.vue';
+import CustumAction from '@/vendor/TassiliLibs/Listing/CustumAction.vue';
+import Paginator from '@/vendor/TassiliLibs/Paginator.vue';
 import { usePage } from '@inertiajs/vue3';
 
 const page = usePage()

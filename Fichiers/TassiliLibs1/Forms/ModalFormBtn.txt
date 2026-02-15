@@ -17,7 +17,7 @@
 
 <script setup>
 import { usePage } from '@inertiajs/vue3';
-import { TassiliInput } from '@/Vendor/TassiliLibs/stores/tassiliInput';
+import { TassiliInput } from '@/vendor/TassiliLibs/stores/tassiliInput';
 
 const props = defineProps({
    collection : {

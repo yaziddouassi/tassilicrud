@@ -18,12 +18,12 @@
 </template>
 
 <script setup>
-import Sidebarre from '@/Vendor/TassiliLibs/Sidebarre.vue';
-import NavBarre from '@/Vendor/TassiliLibs/NavBarre.vue';
-import { formService } from '@/Vendor/TassiliLibs/Service/formService';
-import FormCreate from '@/Vendor/TassiliLibs/Forms/FormCreate.vue';
-import ModalForm from '@/Vendor/TassiliLibs/Forms/ModalForm.vue';
-import TopPage from '@/Vendor/TassiliLibs/Creator/TopPage.vue';
+import Sidebarre from '@/vendor/TassiliLibs/Sidebarre.vue';
+import NavBarre from '@/endor/TassiliLibs/NavBarre.vue';
+import { formService } from '@/vendor/TassiliLibs/Service/formService';
+import FormCreate from '@/vendor/TassiliLibs/Forms/FormCreate.vue';
+import ModalForm from '@/vendor/TassiliLibs/Forms/ModalForm.vue';
+import TopPage from '@/vendor/TassiliLibs/Creator/TopPage.vue';
 import { usePage } from '@inertiajs/vue3';
 
 const page = usePage()

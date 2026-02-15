@@ -49,8 +49,8 @@
 </template>
 
 <script setup>
-import {TassiliInput}    from '@/Vendor/TassiliLibs/stores/tassiliInput'
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing'
+import {TassiliInput}    from '@/vendor/TassiliLibs/stores/tassiliInput'
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing'
 
 const tassiliInput = TassiliInput();
 const tassililisting = TassiliListing();

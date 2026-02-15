@@ -76,7 +76,7 @@
 
 <script setup>
 import { ref, onMounted, computed, nextTick, watch } from 'vue'
-import { TassiliInput } from '@/Vendor/TassiliLibs/stores/tassiliInput'
+import { TassiliInput } from '@/vendor/TassiliLibs/stores/tassiliInput'
 
 const props = defineProps({
   FormKey : {

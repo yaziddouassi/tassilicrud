@@ -12,7 +12,7 @@
   </template>
 
 <script setup>
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing'
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing'
 import { useForm } from '@inertiajs/vue3'
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';

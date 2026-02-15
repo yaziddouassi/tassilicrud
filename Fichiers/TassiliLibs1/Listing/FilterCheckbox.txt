@@ -38,8 +38,8 @@
 <script setup>
 import { ref } from 'vue'
 import { router, usePage } from '@inertiajs/vue3'
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing'
-import { TassiliRoutes } from '@/Vendor/TassiliLibs/stores/tassiliRoutes'
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing'
+import { TassiliRoutes } from '@/vendor/TassiliLibs/stores/tassiliRoutes'
 
 
 const props = defineProps({

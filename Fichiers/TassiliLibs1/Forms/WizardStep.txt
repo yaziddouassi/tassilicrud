@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import {TassiliInput}    from '@/Vendor/TassiliLibs/stores/tassiliInput'
+import {TassiliInput}    from '@/vendor/TassiliLibs/stores/tassiliInput'
 
 const props = defineProps({
   formKey : {

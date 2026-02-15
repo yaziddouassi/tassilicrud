@@ -24,7 +24,7 @@
 import { ref, onMounted, watch } from "vue";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import {TassiliInput} from '@/Vendor/TassiliLibs/stores/tassiliInput'
+import {TassiliInput} from '@/vendor/TassiliLibs/stores/tassiliInput'
 import { computed } from "vue";
 
 const props = defineProps({

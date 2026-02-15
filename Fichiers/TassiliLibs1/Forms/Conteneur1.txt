@@ -75,8 +75,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import { TassiliInput } from '@/Vendor/TassiliLibs/stores/tassiliInput';
-import { TassiliRoutes } from '@/Vendor/TassiliLibs/stores/tassiliRoutes';
+import { TassiliInput } from '@/vendor/TassiliLibs/stores/tassiliInput';
+import { TassiliRoutes } from '@/vendor/TassiliLibs/stores/tassiliRoutes';
 import InputText from '../Inputs/InputText.vue';
 import Textarea from '../Inputs/Textarea.vue';
 import InputNumber from '../Inputs/InputNumber.vue';

@@ -80,8 +80,8 @@
 import { ref, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3'
-import { TassiliRoutes } from '@/Vendor/TassiliLibs/stores/tassiliRoutes';
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing';
+import { TassiliRoutes } from '@/vendor/TassiliLibs/stores/tassiliRoutes';
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing';
 
 const tassiliroutes  = TassiliRoutes();
 const tassililisting = TassiliListing();

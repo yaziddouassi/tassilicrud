@@ -137,7 +137,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TassiliInput } from '@/Vendor/TassiliLibs/stores/tassiliInput'
+import { TassiliInput } from '@/vendor/TassiliLibs/stores/tassiliInput'
 import InputText from '../Repeteur/InputText.vue'
 import CheckboxList from '../Repeteur/CheckboxList.vue'
 import Checkbox from '../Repeteur/Checkbox.vue'

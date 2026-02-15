@@ -17,7 +17,7 @@
 <script setup>
 import Svg1 from './Svg1.vue';
 import Svg2 from './Svg2.vue';
-import { TassiliListing } from '@/Vendor/TassiliLibs/stores/tassiliListing'
+import { TassiliListing } from '@/vendor/TassiliLibs/stores/tassiliListing'
 
 const props = defineProps({
   ide : {

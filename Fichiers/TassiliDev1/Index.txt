@@ -72,10 +72,10 @@
 </template>
 
 <script setup>
-import Sidebarre2 from '@/Vendor/TassiliLibs/Sidebarre2.vue'
-import BtnDelete from '@/Vendor/TassiliLibs/DevGenerator/BtnDelete.vue'
-import BtnUpdate from '@/Vendor/TassiliLibs/DevGenerator/BtnUpdate.vue'
-import Paginator from '@/Vendor/TassiliLibs/Paginator.vue'
+import Sidebarre2 from '@/vendor/TassiliLibs/Sidebarre2.vue'
+import BtnDelete from '@/vendor/TassiliLibs/DevGenerator/BtnDelete.vue'
+import BtnUpdate from '@/vendor/TassiliLibs/DevGenerator/BtnUpdate.vue'
+import Paginator from '@/vendor/TassiliLibs/Paginator.vue'
 import { Link, router, usePage } from '@inertiajs/vue3'
 import { ref, watch } from 'vue'
 import { Notyf } from 'notyf';

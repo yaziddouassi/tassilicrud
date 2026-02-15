@@ -12,7 +12,7 @@ class TassiliCreator extends Command
 
     public function handle()
     {
-        $path = resource_path('js/Vendor');
+        $path = resource_path('js/vendor');
         $sourcePath = base_path('vendor/tassili/crud/Fichiers/PhpFiles');
         $destinationPath = base_path('app/Http/Controllers/Tassili/Admin');
 
@@ -64,7 +64,7 @@ class TassiliCreator extends Command
 
         // ----- SECTION 2 -----
         $sourcePath4 = base_path('vendor/tassili/crud/Fichiers/TassiliLibs1');
-        $directory4 = base_path('resources/js/Vendor/TassiliLibs');
+        $directory4 = base_path('resources/js/vendor/TassiliLibs');
 
         File::copyDirectory($sourcePath4, $directory4);
 
