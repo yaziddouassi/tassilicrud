@@ -107,7 +107,7 @@ const props = defineProps({
     required: true
   },
   record : {
-    type: String,
+    type: Object,
     required: true
   },
 })
@@ -132,7 +132,7 @@ const xlCols = computed(() =>
 
 function initField() {
   
-  Object.entries(page.props[props.record]).forEach(([key, value]) => {
+  Object.entries(props.record).forEach(([key, value]) => {
   
 
   if(key in tassiliInput.form[props.formKey]) {
@@ -225,7 +225,7 @@ if (temoin > 0) {
     'urlValidationurlValidationurlValidationTassili17485RRY4R4RD9448RK48K4RFRFIRU',
     props.formKey
   );
-  formData.append('id',page.props[props.record]['id'] );
+  formData.append('id',props.record['id'] );
 
   Object.keys(tassiliInput.form[props.formKey]).forEach((key) => {
 

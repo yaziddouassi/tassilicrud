@@ -7,7 +7,7 @@
         <TopPage/>
       
         <div v-if="page.props.record">
-          <WizardUpdate :form-key="page.props.pageSettings.validationUrl" :record="'record'" />
+          <WizardUpdate :form-key="page.props.pageSettings.validationUrl" :record="page.props.record" />
         </div>
 
         <ModalForm />
