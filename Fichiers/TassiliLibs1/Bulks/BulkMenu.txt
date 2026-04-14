@@ -1,6 +1,7 @@
 <template>
     <div v-if="tassiliBulk.bulkTabs[props.collection] != 0">
         <div class="h-[32px]">
+           <div class="flex">
            <div class="w-[32px] h-[32px] cursor-pointer"
            @click="open()">
              <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -10,8 +11,23 @@
               </svg>
             </div>
 
+            <div class="pt-[5px] pl-[10px]"
+                v-if="tassiliBulk.bulkTabs[props.collection] != 0 ">
+               <span>
+                 {{ tassiliBulk.bulkTabs[props.collection].length }}
+               </span>
+                <span>
+               Selected &nbsp;
+             </span>
+             <span @click="tassiliBulk.resetActionIds(collection)"
+              class="text-yellow-700 cursor-pointer hover:underline">
+              Clear Tabs
+           </span>
+           </div>
+        </div> 
+
             <div  
-            class="pt-[20px] pb-[20px] bg-[#EEE] rounded-[5px] w-[250px] mt-[35px] relative z-20" 
+            class="pt-[20px] pb-[20px] bg-[#EEE] rounded-[5px] w-[250px] mt-[5px] relative z-20" 
              v-show="tassiliBulk.bulkOpens[props.collection]=='yes' &&
               tassiliBulk.bulkTabs[props.collection] != 0 " >
                 <template v-for="(value,index) in tassiliBulk.bulks[props.collection]">
@@ -30,6 +46,8 @@
                    </div>
                 </template>
             </div>
+
+
 
         </div>
 
