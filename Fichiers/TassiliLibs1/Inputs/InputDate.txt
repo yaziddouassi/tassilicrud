@@ -4,7 +4,7 @@
        <span class="font-bold"> {{  tassiliInput.form[props.FormKey][props.cle]['options']['label']}}</span>
      </div>
      
-     <div>
+     <div v-if="tassiliInput.form[props.FormKey][props.cle]['type2'] ==='Date'">
         <input class="w-full  bg-[#E8E8E8] h-[50px]
       border-[darkblue] border-[1px] "
          :readonly="tassiliInput.form[props.FormKey][props.cle]['options']['readOnly'] ==='yes'"
@@ -13,7 +13,33 @@
                  tassiliInput.form[props.FormKey][props.cle]['options'].min : null"
            :max="tassiliInput.form[props.FormKey][props.cle]['options'].max !== 'infinite' ? 
                  tassiliInput.form[props.FormKey][props.cle]['options'].max : null"
+          :step="tassiliInput.form[props.FormKey][props.cle]['options'].step"
+         >
+     </div>
 
+     <div v-if="tassiliInput.form[props.FormKey][props.cle]['type2'] ==='DateTimeLocal'">
+        <input class="w-full  bg-[#E8E8E8] h-[50px]
+      border-[darkblue] border-[1px] "
+         :readonly="tassiliInput.form[props.FormKey][props.cle]['options']['readOnly'] ==='yes'"
+         type="datetime-local" v-model="tassiliInput.form[props.FormKey][props.cle]['value']"
+         :min="tassiliInput.form[props.FormKey][props.cle]['options'].min !== 'infinite' ?
+                 tassiliInput.form[props.FormKey][props.cle]['options'].min : null"
+           :max="tassiliInput.form[props.FormKey][props.cle]['options'].max !== 'infinite' ? 
+                 tassiliInput.form[props.FormKey][props.cle]['options'].max : null"
+          :step="tassiliInput.form[props.FormKey][props.cle]['options'].step"
+         >
+     </div>
+
+      <div v-if="tassiliInput.form[props.FormKey][props.cle]['type2'] ==='Time'">
+        <input class="w-full  bg-[#E8E8E8] h-[50px]
+      border-[darkblue] border-[1px] "
+         :readonly="tassiliInput.form[props.FormKey][props.cle]['options']['readOnly'] ==='yes'"
+         type="time" v-model="tassiliInput.form[props.FormKey][props.cle]['value']"
+         :min="tassiliInput.form[props.FormKey][props.cle]['options'].min !== 'infinite' ?
+                 tassiliInput.form[props.FormKey][props.cle]['options'].min : null"
+           :max="tassiliInput.form[props.FormKey][props.cle]['options'].max !== 'infinite' ? 
+                 tassiliInput.form[props.FormKey][props.cle]['options'].max : null"
+          :step="tassiliInput.form[props.FormKey][props.cle]['options'].step"
          >
      </div>
     

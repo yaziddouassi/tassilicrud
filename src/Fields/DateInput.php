@@ -5,11 +5,13 @@ class DateInput
 {
     protected string $field;
     protected string $type = 'Date';
+    protected string $type2 = 'Date';
     protected $defaultValue = '';
     protected $label = '';
     protected $noDatabase = 'no';
     protected $min = 'inifinite';
     protected $max = 'inifinite';
+    protected $step = 1;
     protected $readOnly = 'no';
     protected $colSpan = ['sm' =>  1 , 'md' => 1 , 'lg' => 1 , 'xl' => 1];
 
@@ -46,6 +48,12 @@ class DateInput
         return $this;
     }
 
+      public function step($value): self
+    {
+        $this->step = $value;
+        return $this;
+    }
+
     public function notInDatabase(): self
     {
         $this->noDatabase = 'yes';
@@ -63,18 +71,32 @@ class DateInput
         $this->colSpan = $colSpan;
         return $this;
     }
-    
+
+     public function dateTimeLocal(): self
+    {
+        $this->type2 = 'DateTimeLocal';
+        return $this;
+    }
+
+       public function time(): self
+    {
+        $this->type2 = 'Time';
+        return $this;
+    }
+
      public function registerToCustomAction($generator): void
     {
 
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['field'] = $this->field;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['type'] = $this->type;
+        $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['type2'] = $this->type2;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['value'] = $this->defaultValue;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['label'] = $this->label;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['defaultValue'] = $this->defaultValue;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['noDatabase'] = $this->noDatabase;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['max'] = $this->max;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['min'] = $this->min;
+        $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['step'] = $this->step;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['readOnly'] = $this->readOnly;
         $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$this->field]['options']['colSpan'] = $this->colSpan;
     }   
@@ -82,12 +104,14 @@ class DateInput
     public function repeteurToCustomAction($generator , $field) {
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['field'] = $this->field;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['type'] = $this->type;
+    $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['type2'] = $this->type2;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['value'] = $this->defaultValue;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['label'] = $this->label ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['defaultValue'] = $this->defaultValue ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['noDatabase'] = $this->noDatabase ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['min'] = $this->min ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['max'] = $this->max ;
+    $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['step'] = $this->step ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['readOnly'] = $this->readOnly ;
     $generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['fields'][$this->field]['options']['colSpan'] = $this->colSpan ;
     if($generator->tassiliFormList[$generator->customActionUrlTemoin]['fields'][$field]['options']['readOnly'] === 'yes') {
