@@ -79,7 +79,7 @@ class CreatorController extends Controller
         if (\$request->tassiliSaveActive == 'yes') {
             \$this->tassili->record = new \$this->modelClass;
 
-            \$this->tassili->updateRecord(\$request);
+            \$this->tassili->createRecord(\$request);
             \$this->tassili->record->save();
         }
     }
